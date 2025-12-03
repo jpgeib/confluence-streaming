@@ -27,7 +27,45 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
+// OMDB Setup Configuration
+const api_key = process.env.OMDB_API_KEY;
+const base_url = 'http://www.omdbapi.com/';
+const test_movie = 'Interstellar';
+
+// Testing OMDB Connection
+async function testOMDBConnection() {
+  try {
+    // Creating full search url
+    const url = `${base_url}?apikey=${api_key}&t=${test_movie}`;
+    console.log(`fetching data for: ${test_movie}...`);
+
+    // send request to OMDB
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error(`HTTP Error! Status: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    // Check for API Errors
+    if (data.Response === 'False') {
+      console.error('OMDB API Error: ', data.Error);
+      return;
+    }
+
+    // Successful fetch
+    console.log('Connection Successful!');
+    console.log(`Title: ${data.Title}, Year: ${data.Year}, Rating: ${data.imdbRating}`);
+  }
+  catch (error) {
+    console.error('Fetch error: ', error.message);
+  }
+}
+
 // Server checkup
 server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+testOMDBConnection();
