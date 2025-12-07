@@ -20,18 +20,6 @@ const Navbar = () => {
                     <Link to="/channels">Channels</Link>
                 </li>
                 <li>
-                    <Link to="/onboarding">Onboarding</Link>
-                </li>
-                <li>
-                    <Link to="/login">Login</Link>
-                </li>
-                <li>
-                    <Link to="/register">Register</Link>
-                </li>
-                <li>
-                    <Link to="/forgot">Forgot Password</Link>
-                </li>
-                <li>
                     <div className="navbar-search">
                         <button className="search-icon" aria-label="Search">
                             <Icon name="search" size="small" />

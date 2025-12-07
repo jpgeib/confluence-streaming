@@ -21,15 +21,22 @@ const Home = () => {
 
     return (
         <div id="home-container">
-            <h1 id="home-header">Home</h1>
             {/* <MovieCard /> */}
+            <HomeProgramRow 
+                title="Trending Now"
+                movieIds={["tt4574334", "tt1405406", "tt7587890", "tt0413573"]}
+            />
+            <HomeProgramRow 
+                title="Recommended For You"
+                movieIds={["tt0773262", "tt0373732", "tt0206512", "tt6741278"]}
+            />
             <HomeProgramRow
-                title="Action Movies"
-                movieIds={["tt0076759", "tt0080684", "tt0086190", "tt0468569", "tt0137523"]}
+                title="Action"
+                movieIds={["tt0076759", "tt0810788", "tt0468569", "tt0137523"]}
             />
             <HomeProgramRow
                 title="Drama"
-                movieIds={["tt0111161", "tt0068646", "tt0071562", "tt0110912"]}
+                movieIds={["tt0111161", "tt0068646", "tt10813940", "tt0110912"]}
             />
         </div>
     );
