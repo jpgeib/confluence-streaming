@@ -23,7 +23,6 @@ export const AuthContextProvider = ({ children }) => {
         try {
             const response = await axiosInstance.post("/auth/login", inputs);
             setCurrentUser(response.data);
-            localStorage.setItem("currentUser", JSON.stringify(response.data));
             navigate("/channels");
         } catch (err) {
             console.error("Login error:", err);
@@ -35,31 +34,34 @@ export const AuthContextProvider = ({ children }) => {
         try {
             await axiosInstance.post("/auth/logout");
             setCurrentUser(null);
-            localStorage.removeItem("currentUser");
             navigate("/login");
         } catch (err) {
             console.error("Logout error:", err);
         }
     };
 
-    const forgotPassword = async (email) => {
+    const forgotPassword = async (inputs) => {
         try {
-            await axiosInstance.post("/auth/forgot", { email });
+            await axiosInstance.post("/auth/forgot", inputs);
         } catch (err) {
             console.error("Forgot Password error:", err);
             throw err;
         }
     };
 
-    const resetPassword = async (id, token, newPassword) => {
+    const resetPassword = async (id, token, inputs) => {
         try {
-            await axiosInstance.post(`/auth/reset/${id}/${token}`, { password: newPassword });
+            await axiosInstance.post(`/auth/reset/${id}/${token}`, inputs);
             navigate("/login");
         } catch (err) {
             console.error("Reset Password error:", err);
             throw err;
         }
     };
+
+    useEffect(() => {
+        localStorage.setItem("currentUser", JSON.stringify(currentUser));
+    }, [currentUser]);
 
     return (
         <AuthContext.Provider value={{ currentUser, register, login, logout, forgotPassword, resetPassword }}>

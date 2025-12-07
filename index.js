@@ -10,12 +10,26 @@ const app = express();
 const server = require("http").createServer(app);
 const path = require("path");
 const routes = require("./routes");
+const allowedOrigins = [
+  "http://localhost:3000",
+  "http://localhost:3001",
+  "https://confluence-streaming-108b2e0ec103.herokuapp.com/"
+];
 const PORT = process.env.PORT || 3001;
 
 // Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: (origin, callback) => {
+    if (allowedOrigins.includes(origin) || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error("Origin not allowed by CORS"));
+    }
+  },
+  credentials: true
+}));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(helmet());
