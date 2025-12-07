@@ -1,0 +1,23 @@
+.modal-poster {
+    max-width: 300px;
+    height: auto;
+    border-radius: 8px;
+}
+
+.modal-close-btn {
+    background-color: #5a5a8f;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.modal-close-btn:hover {
+    background-color: #4a4a7f;
+}
+
+.home-program-card:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s;
+}
