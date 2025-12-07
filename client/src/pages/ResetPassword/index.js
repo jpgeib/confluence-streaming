@@ -10,8 +10,8 @@ const ResetPassword = (props) => {
     const { userId, token } = useParams();
 
     const [inputs, setInputs] = useState({
-        new_password: "",
-        confirm_password: ""
+        newPassword: "",
+        confirmPassword: ""
     });
     const [submitted, setSubmitted] = useState(false);
     const [error, setError] = useState("");
@@ -22,7 +22,7 @@ const ResetPassword = (props) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (inputs.new_password !== inputs.confirm_password) {
+        if (inputs.newPassword !== inputs.confirmPassword) {
             setError("Passwords do not match. Please try again.");
             return;
         }
@@ -58,14 +58,15 @@ const ResetPassword = (props) => {
         <div id="reset-container">
             <h1 id="reset-header">Reset Password Page</h1>
             <form onSubmit={handleSubmit} id="reset-form">
-                <label htmlFor="new_password">New Password:</label>
-                <input onChange={handleChange} type="password" id="new-password" name="new_password" required />
+                <label htmlFor="newPassword">New Password:</label>
+                <input onChange={handleChange} type="password" id="new-password" name="newPassword" required />
 
-                <label htmlFor="confirm_password">Confirm Password:</label>
-                <input onChange={handleChange} type="password" id="confirm-password" name="confirm_password" required />
+                <label htmlFor="confirmPassword">Confirm Password:</label>
+                <input onChange={handleChange} type="password" id="confirm-password" name="confirmPassword" required />
 
                 <button id="reset-password-btn" type="submit">Reset Password</button>
             </form>
+            {error && <p className="error-message">{error}</p>}
         </div>
     );
 };
