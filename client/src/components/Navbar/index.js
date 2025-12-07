@@ -1,10 +1,13 @@
 import React from "react";
 import { Image, Icon } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import LogoutModal from "../LogoutModal";
 
 import "./style.css";
 
-const Navbar = () => {
+const Navbar = (props) => {
+    const { logout, currentUser } = props.auth;
+    console.log("Navbar currentUser:", currentUser);
     return (
         <nav className="navbar">
             <div className="navbar-logo">
@@ -18,6 +21,13 @@ const Navbar = () => {
                 </li>
                 <li>
                     <Link to="/channels">Channels</Link>
+                </li>
+                <li>
+                    {currentUser ? (
+                        <LogoutModal logout={logout} />
+                    ) : (
+                        <Link to="/login">Login</Link>
+                    )}
                 </li>
                 <li>
                     <div className="navbar-search">
