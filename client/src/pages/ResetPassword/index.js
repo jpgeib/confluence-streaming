@@ -35,6 +35,25 @@ const ResetPassword = (props) => {
     };
 
     console.log("Reset Password inputs:", inputs);
+
+    useEffect(() => {
+        if (submitted) {
+            const timer = setTimeout(() => {
+                navigate("/login");
+            }, 2000);
+            return () => clearTimeout(timer);
+        }
+    }, [submitted, navigate]);
+
+    if (submitted) {
+        return (
+            <div id="reset-container">
+                <h1 id="reset-header">Password Reset Successful!</h1>
+                <p>Redirecting to login page...</p>
+            </div>
+        );
+    }
+    
     return (
         <div id="reset-container">
             <h1 id="reset-header">Reset Password Page</h1>
