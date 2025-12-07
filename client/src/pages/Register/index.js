@@ -56,16 +56,16 @@ const Register = (props) => {
             <h1 id="register-header">Register Page</h1>
             <form onSubmit={handleSubmit} id="register-form">
                 <label htmlFor="first_name">First Name:</label>
-                <input type="text" id="first_name" name="first_name" required />
+                <input onChange={handleChange} type="text" id="first_name" name="first_name" required />
 
                 <label htmlFor="last_name">Last Name:</label>
-                <input type="text" id="last_name" name="last_name" required />
+                <input onChange={handleChange} type="text" id="last_name" name="last_name" required />
 
                 <label htmlFor="email">Email:</label>
-                <input type="email" id="email" name="email" required />
+                <input onChange={handleChange} type="email" id="email" name="email" required />
 
                 <label htmlFor="password">Password:</label>
-                <input type="password" id="password" name="password" required />
+                <input onChange={handleChange} type="password" id="password" name="password" required />
 
                 <button id="register-btn" type="submit">Register</button>
             </form>

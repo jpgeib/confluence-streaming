@@ -40,7 +40,7 @@ const ForgotPassword = (props) => {
             <h1 id="forgot-header">Forgot Password Page</h1>
             <form onSubmit={handleSubmit} id="forgot-form">
                 <label htmlFor="email">Email:</label>
-                <input type="email" id="email" name="email" required />
+                <input onChange={handleChange} type="email" id="email" name="email" required />
 
                 <button id="forgot-btn" type="submit">Send Reset Link</button>
             </form>

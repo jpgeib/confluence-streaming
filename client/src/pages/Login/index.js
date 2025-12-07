@@ -54,10 +54,10 @@ const Login = (props) => {
             <h1 id="login-header">Login</h1>
             <form onSubmit={handleSubmit} id="login-form">
                 <label htmlFor="email">Email:</label>
-                <input type="email" id="email" name="email" required />
+                <input onChange={handleChange} type="email" id="email" name="email" required />
 
                 <label htmlFor="password">Password:</label>
-                <input type="password" id="password" name="password" required />
+                <input onChange={handleChange} type="password" id="password" name="password" required />
 
                 <button id="login-btn" type="submit">Login</button>
             </form>
