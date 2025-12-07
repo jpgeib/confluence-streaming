@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
+import { AuthContext } from "../../context/authContext";
 import Navbar from "../../components/Navbar";
 import Home from "../../pages/Home";
 import Channels from "../../pages/Channels";
@@ -38,19 +39,20 @@ const useWindowDimensions = () => {
 const App = () => {
 
     const { width, height } = useWindowDimensions();
-    
+    const auth = useContext(AuthContext);
+
     return (
         <>
             <Navbar />
             <Routes>
-                <Route exact path="/" element={<Home />} />
-                <Route exact path="/channels" element={<Channels />} />
-                <Route exact path="/channels/:channelId" element={<SingleChannel />} />
-                <Route exact path="/onboarding" element={<Onboarding />} />
-                <Route exact path="/register" element={<Register />} />
-                <Route exact path="/login" element={<Login />} />
-                <Route exact path="/forgot" element={<ForgotPassword />} />
-                <Route exact path="/reset/:userId/:token" element={<ResetPassword />} />
+                <Route exact path="/" element={<Home auth={auth} />} />
+                <Route exact path="/channels" element={<Channels auth={auth} />} />
+                <Route exact path="/channels/:channelId" element={<SingleChannel auth={auth} />} />
+                <Route exact path="/onboarding" element={<Onboarding auth={auth} />} />
+                <Route exact path="/register" element={<Register auth={auth} />} />
+                <Route exact path="/login" element={<Login auth={auth} />} />
+                <Route exact path="/forgot" element={<ForgotPassword auth={auth} />} />
+                <Route exact path="/reset/:userId/:token" element={<ResetPassword auth={auth} />} />
             </Routes>
         </>
     );
