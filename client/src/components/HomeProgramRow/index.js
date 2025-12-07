@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Icon } from "semantic-ui-react";
+import ProgramModal from "../ProgramModal";
 
 import "./style.css";
 
@@ -7,6 +8,8 @@ const HomeProgramRow = ({ title, movieIds }) => {
 
     const [programs, setPrograms] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [selectedProgram, setSelectedProgram] = useState(null);
+    const [modalOpen, setModalOpen] = useState(false);
     const rowRef = useRef(null);
 
 
@@ -58,6 +61,11 @@ const HomeProgramRow = ({ title, movieIds }) => {
         }
     };
 
+    const handleProgramClick = (program) => {
+        setSelectedProgram(program);
+        setModalOpen(true);
+    };
+
     if (loading) {
         return (
             <div className="home-program-row-container">
@@ -75,7 +83,12 @@ const HomeProgramRow = ({ title, movieIds }) => {
                     </button>
                     <div className="home-program-row" ref={rowRef}>
                         {programs.map((program) => (
-                            <div key={program.imdbID} className="home-program-card">
+                            <div 
+                                key={program.imdbID} 
+                                className="home-program-card"
+                                onClick={() => handleProgramClick(program)}
+                                style={{ cursor: 'pointer' }}
+                            >
                                 <img src={program.Poster} alt={program.Title} />
                             </div>
                         ))}
@@ -85,6 +98,14 @@ const HomeProgramRow = ({ title, movieIds }) => {
                     </button>
                 </div>
             </div>
+            
+            {selectedProgram && (
+                <ProgramModal 
+                    program={selectedProgram}
+                    open={modalOpen}
+                    onClose={() => setModalOpen(false)}
+                />
+            )}
         </>
     );
 };

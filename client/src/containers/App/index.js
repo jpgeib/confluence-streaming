@@ -43,7 +43,7 @@ const App = () => {
 
     return (
         <>
-            <Navbar />
+            <Navbar auth={auth} />
             <Routes>
                 <Route exact path="/" element={<Home auth={auth} />} />
                 <Route exact path="/channels" element={<Channels auth={auth} />} />

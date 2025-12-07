@@ -34,7 +34,7 @@ export const AuthContextProvider = ({ children }) => {
         try {
             await axiosInstance.post("/auth/logout");
             setCurrentUser(null);
-            navigate("/login");
+            navigate("/");
         } catch (err) {
             console.error("Logout error:", err);
         }
