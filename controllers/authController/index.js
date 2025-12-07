@@ -117,7 +117,7 @@ module.exports = {
                 if (data.length === 0) return res.status(404).json("User not found");
                 console.log(data[0].user_id);
                 const token = jwt.sign({ id: data[0].user_id }, process.env.SECRET, { expiresIn: "1h" });
-                const resetDomain = process.env.NODE_ENV === "production" ? "https://www.insight3sixty.com" : "http://localhost:3000";
+                const resetDomain = process.env.NODE_ENV === "production" ? process.env.PROD_BASE_URL : "http://localhost:3000";
                 sendEmail(req.body.email, "Password Reset", `${resetDomain}/reset/${data[0].user_id}/${token}`);
                 console.log("Sent email");
             });
