@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, Icon, Grid } from "semantic-ui-react";
+import { Image, Modal, Icon } from "semantic-ui-react";
 
 import "./style.css";
 
@@ -15,28 +15,25 @@ const ProgramModal = ({ program, open, onClose }) => {
         >
             <Modal.Header>{program.Title} ({program.Year})</Modal.Header>
             <Modal.Content image>
-                <img src={program.Poster} alt={program.Title} className="modal-poster" />
+                <Image src={program.Poster} alt={program.Title} className="modal-poster" />
                 <Modal.Description>
-                    <Grid>
-                        <Grid.Row>
-                            <Grid.Column>
-                                <h3>Overview</h3>
-                                <p>{program.Plot}</p>
-                            </Grid.Column>
-                        </Grid.Row>
-                        <Grid.Row>
-                            <Grid.Column width={8}>
-                                <p><strong>Director:</strong> {program.Director}</p>
-                                <p><strong>Cast:</strong> {program.Actors}</p>
-                                <p><strong>Genre:</strong> {program.Genre}</p>
-                            </Grid.Column>
-                            <Grid.Column width={8}>
-                                <p><strong>Rating:</strong> {program.Rated}</p>
-                                <p><strong>Runtime:</strong> {program.Runtime}</p>
-                                <p><strong>IMDb Rating:</strong> {program.imdbRating}/10</p>
-                            </Grid.Column>
-                        </Grid.Row>
-                    </Grid>
+                    <div className="program-modal">
+                        <div className="program-modal-col">
+                            <h3>Overview</h3>
+                            <p>{program.Plot}</p>
+                        </div>
+                        <div className="program-modal-col">
+                            <p><strong>Director:</strong> {program.Director}</p>
+                            <p><strong>Cast:</strong> {program.Actors}</p>
+                            <p><strong>Genre:</strong> {program.Genre}</p>
+                            <p><strong>Rating:</strong> {program.Rated}</p>
+                            <p><strong>Runtime:</strong> {program.Runtime}</p>
+                            <p><strong>IMDb Rating:</strong> {program.imdbRating}/10</p>
+                        </div>
+                    </div>
+                    <button className="program-modal-btn">
+                        <Icon name="add" /> Add To Channel
+                    </button>
                 </Modal.Description>
             </Modal.Content>
             <Modal.Actions>
