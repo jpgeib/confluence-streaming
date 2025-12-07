@@ -61,6 +61,7 @@ const Login = (props) => {
 
                 <button id="login-btn" type="submit">Login</button>
             </form>
+            {error && <p className="error-message">{error}</p>}
         </div>
     );
 };

@@ -50,7 +50,7 @@ const Register = (props) => {
             </div>
         );
     }
-    
+
     return (
         <div id="register-container">
             <h1 id="register-header">Register Page</h1>
@@ -69,6 +69,7 @@ const Register = (props) => {
 
                 <button id="register-btn" type="submit">Register</button>
             </form>
+            {error && <p className="error-message">{error}</p>}
         </div>
     );
 };
