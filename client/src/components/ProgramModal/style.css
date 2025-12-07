@@ -11,15 +11,23 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    transition: 0.3s;
 }
 
 .modal-close-btn:hover {
     background-color: #4a4a7f;
+    transition: 0.3s;
 }
 
 .home-program-card:hover {
     transform: scale(1.05);
     transition: transform 0.2s;
+}
+
+.program-modal {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
 }
 
 .program-modal-btn {
@@ -30,4 +38,10 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    transition: 0.3s;
+}
+
+.program-modal-btn:hover {
+    background-color: #4a4a7f;
+    transition: 0.3s;
 }
