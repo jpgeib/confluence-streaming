@@ -4,13 +4,13 @@ import "./style.css";
 
 const ForgotPassword = () => {
     return (
-        <div className="forgot-password-container">
-            <h1>Forgot Password Page</h1>
-            <form className="forgot-password-form">
+        <div id="forgot-container">
+            <h1 id="forgot-header">Forgot Password Page</h1>
+            <form id="forgot-form">
                 <label htmlFor="email">Email:</label>
                 <input type="email" id="email" name="email" required />
 
-                <button type="submit">Send Reset Link</button>
+                <button id="forgot-btn" type="submit">Send Reset Link</button>
             </form>
         </div>
     );

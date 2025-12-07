@@ -30,7 +30,7 @@
     border-radius: 4px;
 }
 
-#register-form button {
+#register-btn {
     background-color: transparent;
     color: white;
     border: solid 2px white;
@@ -42,7 +42,7 @@
     margin: 0 auto;
 }
 
-#register-form button:hover {
+#register-btn:hover {
     background-color: white;
     color: #575BB4;
     transition: 0.3s;
