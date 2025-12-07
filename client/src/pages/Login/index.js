@@ -1,8 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import "./style.css";
+import { set } from "mongoose";
 
-const Login = () => {
+const Login = (props) => {
+
+    const { login } = props.auth;
+    const navigate = useNavigate();
+    const [inputs, setInputs] = useState({
+        email: "",
+        password: ""
+    });
+
+    const [submitted, setSubmitted] = useState(false);
+    const [error, setError] = useState("");
+
+    const handleChange = (e) => {
+        setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    };
+
     return (
         <div id="login-container">
             <h1 id="login-header">Login</h1>
