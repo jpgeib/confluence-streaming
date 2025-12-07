@@ -4,6 +4,7 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
+const crypto = require("crypto");
 const helmet = require("helmet");
 
 const app = express();
@@ -32,7 +33,30 @@ app.use(cors({
 }));
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(helmet());
+app.use(helmet({
+    contentSecurityPolicy: {
+        directives: {
+            ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+            "connect-src": [
+                "'self'",
+                "confluence-streaming-108b2e0ec103.herokuapp.com/"
+            ],
+            "img-src": [
+                "'self'",
+                "confluence-streaming.s3.us-east-1.amazonaws.com",
+            ],
+            "form-action": [
+                "'self'",
+                "confluence-streaming-108b2e0ec103.herokuapp.com/"
+            ],
+            "script-src": [
+                "'self'",
+                (req, res) => `'nonce-${res.locals.cspNonce}'`,
+                "ajax.googleapis.com"
+            ]
+        }
+    }
+}));
 app.use(routes);
 
 // Serve static files from the React app
