@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { axiosInstance } from "../../utils/api";
-import MovieCard from "../../components/MovieCard";
 import HomeProgramRow from "../../components/HomeProgramRow";
 
 import "./style.css";
