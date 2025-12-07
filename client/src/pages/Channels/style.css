@@ -1,0 +1,15 @@
+#channels-container {
+    padding: 5%;
+}
+
+#channels-header {
+    color: white;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+#channels-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}

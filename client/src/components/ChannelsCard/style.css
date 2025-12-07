@@ -1,0 +1,20 @@
+#channels-card-container {
+    background-color: #4D556F!important;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+#channels-card-container:hover {
+    transform: scale(1.05);
+    border-color: #ffffff;
+    transition: transform 0.3s ease;
+}
+
+#channels-card-header {
+    color: white;
+    text-align: center;
+    margin-bottom: 1rem;
+}

@@ -1,0 +1,15 @@
+#single-channel-container {
+    padding: 5%;
+}
+
+#single-channel-header {
+    color: white;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+#single-channel-content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
