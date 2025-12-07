@@ -38,7 +38,7 @@ const ForgotPassword = (props) => {
     return (
         <div id="forgot-container">
             <h1 id="forgot-header">Forgot Password Page</h1>
-            <form id="forgot-form">
+            <form onSubmit={handleSubmit} id="forgot-form">
                 <label htmlFor="email">Email:</label>
                 <input type="email" id="email" name="email" required />
 

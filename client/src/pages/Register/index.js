@@ -54,7 +54,7 @@ const Register = (props) => {
     return (
         <div id="register-container">
             <h1 id="register-header">Register Page</h1>
-            <form id="register-form">
+            <form onSubmit={handleSubmit} id="register-form">
                 <label htmlFor="first_name">First Name:</label>
                 <input type="text" id="first_name" name="first_name" required />
 

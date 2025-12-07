@@ -52,7 +52,7 @@ const Login = (props) => {
     return (
         <div id="login-container">
             <h1 id="login-header">Login</h1>
-            <form id="login-form">
+            <form onSubmit={handleSubmit} id="login-form">
                 <label htmlFor="email">Email:</label>
                 <input type="email" id="email" name="email" required />
 
