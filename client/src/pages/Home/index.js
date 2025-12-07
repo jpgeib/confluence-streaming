@@ -8,7 +8,7 @@ const Home = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await axiosInstance.get("/test");
+                const res = await axiosInstance.get("");
                 console.log(res.data);
             } catch (error) {
                 console.error(error);
@@ -18,8 +18,8 @@ const Home = () => {
     }, []);
 
     return (
-        <div>
-            <h1>Home Page</h1>
+        <div id="home-container">
+            <h1 id="home-header">Home</h1>
         </div>
     );
 };

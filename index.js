@@ -1,4 +1,5 @@
 require("dotenv").config();
+const fs = require("fs");
 console.log(`NODE_ENV at stattup: ${process.env.NODE_ENV}`);
 const express = require("express");
 const cors = require("cors");
@@ -67,45 +68,43 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-// OMDB Setup Configuration
+// OMDB & Poster API Setup Configuration
 const api_key = process.env.OMDB_API_KEY;
 const base_url = 'http://www.omdbapi.com/';
-const test_movie = 'Interstellar';
+const poster_base_url = 'http://img.omdbapi.com/';
 
-// Testing OMDB Connection
-async function testOMDBConnection() {
+// API routing to fetch movie / poster data
+app.get('/api/get-movie', async (req, res) => {
   try {
-    // Creating full search url
-    const url = `${base_url}?apikey=${api_key}&t=${test_movie}`;
-    console.log(`fetching data for: ${test_movie}...`);
+    const movieTitle = req.query.title;
 
-    // send request to OMDB
+    if (!movieTitle) {
+      return res.status(400).json({ error: "Movie title is required" });
+    }
+
+    const url = `${base_url}?apikey=${api_key}&t=${encodeURIComponent(movieTitle)}`;
+
     const response = await fetch(url);
-
-    if (!response.ok) {
-      throw new Error(`HTTP Error! Status: ${response.status}`);
-    }
-
     const data = await response.json();
-
-    // Check for API Errors
-    if (data.Response === 'False') {
-      console.error('OMDB API Error: ', data.Error);
-      return;
+    
+    if (data.Response === "False") {
+      return res.status(404).json({ error: "Movie not found" });
     }
 
-    // Successful fetch
-    console.log('Connection Successful!');
-    console.log(`Title: ${data.Title}, Year: ${data.Year}, Rating: ${data.imdbRating}`);
+    const enhancedData = {
+      ...data,
+      PosterSecure: `${poster_base_url}?apikey=${api_key}&i=${data.imdbID}&h=600`
+    };
+
+    res.json(enhancedData);
   }
   catch (error) {
-    console.error('Fetch error: ', error.message);
+    console.error("Server error: ", error)
+    res.status(500).json({error: "Internal server error"});
   }
-}
+})
 
 // Server checkup
 server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
-
-testOMDBConnection();

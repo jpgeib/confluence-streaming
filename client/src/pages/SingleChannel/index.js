@@ -4,8 +4,8 @@ import "./style.css";
 
 const SingleChannel = () => {
     return (
-        <div>
-            <h1>Single Channel Page</h1>
+        <div id="single-channel-container">
+            <h1 id="single-channel-header">Single Channel Page</h1>
         </div>
     );
 };
