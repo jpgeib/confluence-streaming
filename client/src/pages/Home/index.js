@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import { axiosInstance } from "../../utils/api";
+import MovieCard from "../../components/MovieCard";
+import HomeProgramRow from "../../components/HomeProgramRow";
 
 import "./style.css";
 
@@ -20,6 +22,15 @@ const Home = () => {
     return (
         <div id="home-container">
             <h1 id="home-header">Home</h1>
+            {/* <MovieCard /> */}
+            <HomeProgramRow
+                title="Action Movies"
+                movieIds={["tt0076759", "tt0080684", "tt0086190", "tt0468569", "tt0137523"]}
+            />
+            <HomeProgramRow
+                title="Drama"
+                movieIds={["tt0111161", "tt0068646", "tt0071562", "tt0110912"]}
+            />
         </div>
     );
 };
