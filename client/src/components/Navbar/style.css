@@ -25,6 +25,7 @@
 
 .navbar-links a:hover {
     text-decoration: underline;
+    color: white;
 }
 
 .search-icon {
