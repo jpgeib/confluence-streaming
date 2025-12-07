@@ -14,7 +14,7 @@ const routes = require("./routes");
 const allowedOrigins = [
   "http://localhost:3000",
   "http://localhost:3001",
-  "https://confluence-streaming-108b2e0ec103.herokuapp.com/"
+  "https://confluence-streaming-108b2e0ec103.herokuapp.com"
 ];
 const PORT = process.env.PORT || 3001;
 
