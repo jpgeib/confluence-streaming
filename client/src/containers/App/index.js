@@ -12,7 +12,33 @@ import ResetPassword from "../../pages/ResetPassword";
 
 import "./style.css";
 
+const getWindowDimensions = () => {
+  const page = document.querySelector("html");
+  const { clientWidth: width, clientHeight: height } = page;
+  return {
+    width,
+    height
+  }
+}
+
+const useWindowDimensions = () => {
+  const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowDimensions(getWindowDimensions());
+    }
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  return windowDimensions;
+}
+
 const App = () => {
+
+    const { width, height } = useWindowDimensions();
+    
     return (
         <>
             <Navbar />
