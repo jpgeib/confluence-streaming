@@ -6,10 +6,10 @@ import "./style.css";
 
 const Navbar = () => {
     return (
-         <nav className="navbar">
+        <nav className="navbar">
             <div className="navbar-logo">
                 <Link to="/">
-                    <Image src="/path/to/logo.png" alt="Confluence Streaming" />
+                    <Image src="https://confluence-streaming.s3.us-east-1.amazonaws.com/cs-logo-condensed.png" alt="Confluence Streaming" />
                 </Link>
             </div>
             <ul className="navbar-links">
@@ -19,12 +19,15 @@ const Navbar = () => {
                 <li>
                     <Link to="/channels">Channels</Link>
                 </li>
+                <li>
+                    <div className="navbar-search">
+                        <button className="search-icon" aria-label="Search">
+                            <Icon name="search" size="small" />
+                        </button>
+                    </div>
+                </li>
             </ul>
-            <div className="navbar-search">
-                <button className="search-icon" aria-label="Search">
-                    <Icon name="search" size="large" />
-                </button>
-            </div>
+
         </nav>
     );
 };
