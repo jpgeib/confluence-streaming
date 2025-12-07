@@ -1,5 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+import Navbar from "../../components/Navbar";
 import Home from "../../pages/Home";
 import Channels from "../../pages/Channels";
 import SingleChannel from "../../pages/SingleChannel";
@@ -13,7 +14,8 @@ import "./style.css";
 
 const App = () => {
     return (
-        <div>
+        <>
+            <Navbar />
             <Routes>
                 <Route exact path="/" element={<Home />} />
                 <Route exact path="/channels" element={<Channels />} />
@@ -24,7 +26,7 @@ const App = () => {
                 <Route exact path="/forgot" element={<ForgotPassword />} />
                 <Route exact path="/reset/:userId/:token" element={<ResetPassword />} />
             </Routes>
-        </div>
+        </>
     );
 };
 
