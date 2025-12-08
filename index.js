@@ -46,7 +46,15 @@ app.use(helmet({
         "https://www.omdbapi.com"
       ],
       scriptSrc: ["'self'", "'unsafe-inline'"],
-      styleSrc: ["'self'", "'unsafe-inline'"],
+      styleSrc: [
+        "'self'", 
+        "'unsafe-inline'",
+        "https://cdn.jsdelivr.net"
+      ],
+      fontSrc: [
+        "'self'",
+        "https://cdn.jsdelivr.net"
+      ],
       imgSrc: ["'self'", "data:", "https:", "http:"],
     },
   },
