@@ -46,3 +46,19 @@
     color: #575BB4;
     transition: 0.3s;
 }
+
+#register-link {
+    margin-top: 1rem;
+}
+
+#register-link, #forgot-password-link {
+    color: white;
+    text-align: center;
+    /* margin-top: 1rem; */
+    cursor: pointer;
+    text-decoration: none;
+}
+
+#register-link:hover, #forgot-password-link:hover {
+    text-decoration: underline;
+}
