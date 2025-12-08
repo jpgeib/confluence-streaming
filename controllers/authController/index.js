@@ -12,8 +12,6 @@ const {
     resetUserPassword
 } = require("../../models/auth");
 
-console.log(process.env.NODE_ENV);
-
 module.exports = {
     register: (req, res) => {
         db.query(getUser, [req.body.email, req.body.first_name, req.body.last_name], (err, data) => {
