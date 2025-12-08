@@ -15,7 +15,8 @@ const routes = require("./routes");
 const allowedOrigins = [
   "http://localhost:3000",
   "http://localhost:3001",
-  "https://confluence-streaming-108b2e0ec103.herokuapp.com"
+  "https://confluence-streaming-108b2e0ec103.herokuapp.com",
+  "http://www.omdbapi.com"
 ];
 const PORT = process.env.PORT || 3001;
 
@@ -40,11 +41,13 @@ app.use(helmet({
             ...helmet.contentSecurityPolicy.getDefaultDirectives(),
             "connect-src": [
                 "'self'",
-                "confluence-streaming-108b2e0ec103.herokuapp.com/"
+                "confluence-streaming-108b2e0ec103.herokuapp.com/",
+                "www.omdbapi.com"
             ],
             "img-src": [
                 "'self'",
                 "confluence-streaming.s3.us-east-1.amazonaws.com",
+                "www.omdbapi.com"
             ],
             "form-action": [
                 "'self'",
