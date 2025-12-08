@@ -60,6 +60,8 @@ const Login = (props) => {
                 <input onChange={handleChange} type="password" id="password" name="password" required />
 
                 <button id="login-btn" type="submit">Login</button>
+                <p id="register-link" onClick={() => navigate("/register")}>Don't have an account? Register here</p>
+                <p id="forgot-password-link" onClick={() => navigate("/forgot")}>Forgot Password?</p>
             </form>
             {error && <p className="error-message">{error}</p>}
         </div>
