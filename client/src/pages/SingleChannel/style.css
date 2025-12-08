@@ -1,15 +1,149 @@
 #single-channel-container {
-    padding: 5%;
+    padding: 2rem 5%;
+    min-height: 100vh;
 }
 
 #single-channel-header {
     color: white;
     text-align: center;
+    font-size: 2.5rem;
     margin-bottom: 2rem;
 }
 
-#single-channel-content {
+.loading-text, .error-text {
+    color: white;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.channel-content {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
+}
+
+.featured-section {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.featured-poster {
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.featured-poster:hover {
+    transform: scale(1.02);
+}
+
+.featured-poster img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: column;
     gap: 1rem;
+}
+
+.channel-action-btn {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 1rem;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.3s;
+}
+
+.channel-action-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.programs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.program-item {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 1.5rem;
+    display: flex;
+    gap: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.program-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateX(10px);
+}
+
+.program-poster {
+    flex-shrink: 0;
+    width: 150px;
+}
+
+.program-poster img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+.program-info {
+    flex: 1;
+    color: white;
+}
+
+.program-info h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.5rem;
+}
+
+.program-seasons {
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0 0 1rem 0;
+    font-size: 1rem;
+}
+
+.program-description {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+}
+
+.show-more-btn {
+    background-color: transparent;
+    border: none;
+    color: white;
+    padding: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+    transition: opacity 0.3s;
+}
+
+.show-more-btn:hover {
+    opacity: 0.7;
+}
+
+@media (max-width: 1024px) {
+    .channel-content {
+        grid-template-columns: 1fr;
+    }
 }

@@ -1,77 +1,83 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import ChannelsCard from "../../components/ChannelsCard";
+
 import "./style.css";
-
-const apikey = process.env.REACT_APP_OMDB_API_KEY;
-
-// Creating channel arrays
-const userChannels = [
-        {
-            id: 1,
-            channelName: "Nostalgia",
-            contentIds: ["tt0206512", "tt0400095", "tt0115213", "tt0169414"]
-        },
-        {
-            id: 2,
-            channelName: "Crime/Thriller",
-            contentIds: ["tt0773262","tt0364845", "tt0903747", "tt0810788", "tt0203259"]
-        },
-        {
-            id: 3,
-            channelName: "Action and Animation",
-            contentIds: ["tt6741278", "tt0373732", "tt21209876", "tt3107288", ""]
-        },
-        {
-            id: 4,
-            channelName: "Netflix Favorites",
-            contentIds: ["tt10813940", "tt7414406", "tt4574334"]
-        }
-    ];
 
 const Channels = () => {
     const navigate = useNavigate();
-    
-    const [channelPosters, setChannelPosters] = useState({});
+    const apikey = process.env.REACT_APP_OMDB_API_KEY;
+
+    // Creating channel arrays with IDs for routing
+    const channels = [
+        {
+            id: "nostalgia",
+            title: "Nostalgia",
+            movieIds: ["tt0096697", "tt0364845", "tt1667889", "tt0412142"]
+        },
+        {
+            id: "crime",
+            title: "Crime/Thriller",
+            movieIds: ["tt0773262", "tt0903747", "tt0364725", "tt2085059", "tt0460649"]
+        },
+        {
+            id: "action",
+            title: "Action and Animation",
+            movieIds: ["tt6741278", "tt7441658", "tt0760437", "tt021333", "tt0103359"]
+        },
+        {
+            id: "drama",
+            title: "Drama",
+            movieIds: ["tt0944947", "tt1856010", "tt0804503", "tt0903747"]
+        }
+    ];
+
+    const [channelData, setChannelData] = useState([]);
 
     useEffect(() => {
-        const fetchCoverImages = async () => {
-            const posters = {};
-
-            const promises = userChannels.map(async (channel) => {
-                const coverId = channel.contentIds[0];
-                
-                try {
-                    const res = await fetch(`http://www.omdbapi.com/?apikey=${apikey}&i=${coverId}`);
-                    const data = await res.json();
-                    posters[channel.id] = data.Poster; 
-                } catch (error) {
-                    console.error("Failed to fetch poster for channel:", channel.channelName);
-                }
-            });
-
-            await Promise.all(promises);
-            setChannelPosters(posters);
+        const fetchChannelCovers = async () => {
+            const data = await Promise.all(
+                channels.map(async (channel) => {
+                    try {
+                        const firstMovieId = channel.movieIds[0];
+                        const res = await fetch(`http://www.omdbapi.com/?apikey=${apikey}&i=${firstMovieId}`);
+                        const movie = await res.json();
+                        
+                        return {
+                            ...channel,
+                            coverImage: movie.Poster,
+                            count: channel.movieIds.length
+                        };
+                    } catch (error) {
+                        console.error(`Error fetching cover for ${channel.title}:`, error);
+                        return {
+                            ...channel,
+                            coverImage: null,
+                            count: channel.movieIds.length
+                        };
+                    }
+                })
+            );
+            setChannelData(data);
         };
 
-        fetchCoverImages();
-    }, []);
+        fetchChannelCovers();
+    }, [apikey]);
 
-    const handleChannelClick = (channel) => {
-        navigate('/channels/:id', { state: { channelData: channel } });
+    const handleChannelClick = (channelId) => {
+        navigate(`/channels/${channelId}`);
     };
 
     return (
         <div id="channels-container">
             <h1 id="channels-header">My Channels</h1>
             <div id="channels-list">
-                {userChannels.map((channel) => (
-                    <div key={channel.id} onClick={() => handleChannelClick(channel)}>
+                {channelData.map((channel) => (
+                    <div key={channel.id} onClick={() => handleChannelClick(channel.id)}>
                         <ChannelsCard
-                            title={channel.channelName}
-                            count={channel.contentIds.length}
-                            coverImage={channelPosters[channel.id]}
+                            title={channel.title}
+                            count={channel.count}
+                            coverImage={channel.coverImage}
                         />
                     </div>
                 ))}
