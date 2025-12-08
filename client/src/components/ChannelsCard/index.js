@@ -10,11 +10,10 @@ const ChannelsCard = ({ title, count, coverImage }) => {
                     <img 
                         src={coverImage} 
                         alt={`${title} Cover`} 
-                        className="channels-card-poster" 
+                        id="channels-card-poster" 
                     />
                 ) : (
-                    // Fallback if image is loading or missing
-                    <div className="channels-card-placeholder">
+                    <div id="channels-card-placeholder">
                         📺
                     </div>
                 )}

@@ -10,6 +10,15 @@
 
 #channels-list {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 3rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+}
+
+#channels-list > div {
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+#channels-list > div:hover {
+    transform: scale(1.05);
 }
