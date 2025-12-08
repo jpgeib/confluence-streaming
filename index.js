@@ -36,30 +36,20 @@ app.use(cors({
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(helmet({
-    contentSecurityPolicy: {
-        directives: {
-            ...helmet.contentSecurityPolicy.getDefaultDirectives(),
-            "connect-src": [
-                "'self'",
-                "confluence-streaming-108b2e0ec103.herokuapp.com/",
-                "www.omdbapi.com"
-            ],
-            "img-src": [
-                "'self'",
-                "confluence-streaming.s3.us-east-1.amazonaws.com",
-                "www.omdbapi.com"
-            ],
-            "form-action": [
-                "'self'",
-                "confluence-streaming-108b2e0ec103.herokuapp.com/"
-            ],
-            "script-src": [
-                "'self'",
-                (req, res) => `'nonce-${res.locals.cspNonce}'`,
-                "ajax.googleapis.com"
-            ]
-        }
-    }
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      connectSrc: [
+        "'self'",
+        "https://confluence-streaming-108b2e0ec103.herokuapp.com",
+        "http://www.omdbapi.com",
+        "https://www.omdbapi.com"
+      ],
+      scriptSrc: ["'self'", "'unsafe-inline'"],
+      styleSrc: ["'self'", "'unsafe-inline'"],
+      imgSrc: ["'self'", "data:", "https:", "http:"],
+    },
+  },
 }));
 app.use(routes);
 
