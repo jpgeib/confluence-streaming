@@ -1,29 +1,38 @@
 #channels-card-container {
-    background-color: #4D556F!important;
+    background-color: #575BB4;
     border-radius: 8px;
     overflow: hidden;
     transition: transform 0.3s ease;
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
-    margin-bottom: 5rem;
     padding: 1rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 #channels-card-container:hover {
     transform: scale(1.05);
-    border-color: #fff;
-    transition: transform 0.3s ease;
+}
+
+.channels-card-image-wrapper {
+    width: 100%;
+    aspect-ratio: 2/3;
+    overflow: hidden;
+    border-radius: 4px;
+    margin-bottom: 1rem;
 }
 
 #channels-card-poster {
     width: 100%;
     height: 100%;
-    object-fit: cover; 
+    object-fit: cover;
+    display: block;
 }
 
 #channels-card-placeholder {
     width: 100%;
-    height: 300px;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -34,11 +43,13 @@
 #channels-card-header {
     color: white;
     text-align: center;
-    margin-bottom: 1rem;
+    margin: 0.5rem 0;
+    font-size: 1.5rem;
 }
 
 #channels-count {
-    color: white;
+    color: rgba(255, 255, 255, 0.8);
     text-align: center;
-    margin-bottom: 1rem;
+    margin: 0;
+    font-size: 1rem;
 }
